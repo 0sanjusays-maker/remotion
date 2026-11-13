@@ -68,7 +68,7 @@ export const Sequence2: React.FC = () => {
 					mixBlendMode: 'screen',
 					opacity: 0.2,
 					transform: `scale(${bgDolly * 1.03})`,
-					filter: 'blur(6px)',
+					filter: 'blur(3px)',
 				}}
 			>
 				<Img src={staticFile('art/02-ghat-bokeh.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
@@ -81,7 +81,7 @@ export const Sequence2: React.FC = () => {
 				<IncenseSmoke x={16} width={12} height={58} opacity={0.55} blur={5} seed={14} rise={4.2} />
 			</div>
 
-			<Motes count={26} rgb="255,164,72" opacity={0.5} size={4} rise={0.9} blur={1.2} seed={31} />
+			<Motes count={26} rgb="255,164,72" opacity={0.5} size={4} rise={0.9} blur={0.4} seed={31} />
 
 			<Vignette strength={0.95} />
 			<Grain opacity={0.055} />

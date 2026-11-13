@@ -29,7 +29,7 @@ export const Vignette = ({strength = 1, tint = '0,0,0'}: {strength?: number; tin
 			style={{
 				pointerEvents: 'none',
 				background: `radial-gradient(ellipse 78% 78% at 50% 48%, rgba(${tint},0) 34%, rgba(${tint},${0.16 * strength}) 62%, rgba(${tint},${0.62 * strength}) 86%, rgba(${tint},${0.9 * strength}) 100%)`,
-				boxShadow: `inset 0 0 ${220 * strength}px rgba(0,0,0,${0.55 * strength})`,
+				boxShadow: strength > 0.85 ? `inset 0 0 120px rgba(0,0,0,${0.35 * strength})` : undefined,
 			}}
 		/>
 	);
@@ -54,7 +54,7 @@ export const Fog = ({
 	rgb = '186,212,238',
 	opacity = 0.55,
 	speed = 1,
-	blur = 90,
+	blur = 0,
 	seed = 11,
 	scale = 1,
 	top = 30,
@@ -76,8 +76,9 @@ export const Fog = ({
 		}));
 	}, [count, seed, top, spread]);
 
+	const softness = blur > 0 ? `blur(${blur}px)` : undefined;
 	return (
-		<AbsoluteFill style={{opacity, mixBlendMode: blend, filter: `blur(${blur}px)`, pointerEvents: 'none'}}>
+		<AbsoluteFill style={{opacity, mixBlendMode: blend, filter: softness, pointerEvents: 'none'}}>
 			{blobs.map((b, i) => {
 				const x = (((b.x + frame * 0.013 * b.sp * speed) % 150) + 150) % 150 - 25;
 				const y = b.y + Math.sin(frame * 0.006 * b.sp + b.ph) * 3;
@@ -120,7 +121,7 @@ export const Motes = ({
 	opacity = 0.8,
 	size = 5,
 	rise = 0.35,
-	blur = 1.6,
+	blur = 0.4,
 	seed = 23,
 	drift = 1,
 	glow = true,
@@ -142,7 +143,7 @@ export const Motes = ({
 	}, [count, seed]);
 
 	return (
-		<AbsoluteFill style={{mixBlendMode: 'screen', pointerEvents: 'none', filter: `blur(${blur}px)`}}>
+		<AbsoluteFill style={{mixBlendMode: 'screen', pointerEvents: 'none', filter: blur > 0.4 ? `blur(${blur}px)` : undefined}}>
 			{motes.map((m, i) => {
 				const travel = ((m.y - (frame * rise * m.sp) / 10) % 118 + 118) % 118 - 9;
 				const x = m.x + Math.sin(frame * 0.012 * m.sway + m.ph) * 2.4 * drift;

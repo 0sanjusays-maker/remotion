@@ -6,6 +6,10 @@ of it lives in code, so every frame is reproducible.
 
 ![Storyboard](docs/storyboard.jpg)
 
+**The finished film is checked in at [`docs/golden-arghya.mp4`](docs/golden-arghya.mp4)** — 1920×1080,
+30 fps, 72.0 s, H.264 + AAC, 35 MB, `faststart` so it streams in a browser. The master render at
+`--crf=20` is 59 MB; this is a `--crf=22` pass on top of it.
+
 | | |
 |---|---|
 | Runtime | 72 s · 2160 frames |
@@ -63,9 +67,11 @@ Supporting techniques, all in `src/components/`:
 
 - **Parallax plates** — camera moves are `translate`/`scale` on an oversized `object-fit: cover`
   image, so the move never reveals an edge.
-- **Keyed silhouettes** — figures were generated on pure white and converted to real alpha
-  (`255 - luma`) so they composite over any plate, including through the `feTurbulence`
-  water distortion in `Sequence3`.
+- **Keyed silhouettes** — six figures (the man with the daura, the praying vrati, the lifted
+  soop, the family at sunrise, the blessing, the sugarcane) were generated on pure white and
+  keyed to real alpha, keeping sari texture solid while the background drops away. They then
+  composite over any plate, including through the `feTurbulence` water distortion in
+  `Sequence3`, and take `brightness(0)` at sunrise.
 - **Atmosphere** — `Fog`, `Motes`, `IncenseSmoke`, `LensFlare`, `Diya` and `Grain` are
   procedural. Every random value is seeded (`src/lib/anim.ts`), so renders are identical
   frame to frame and machine to machine.
@@ -87,6 +93,20 @@ regenerate them (about 25 s):
 ```bash
 npm run audio
 ```
+
+## Rendering on a headless box
+
+`npm run render` uses whatever Chrome Remotion already knows about. If there is no browser
+in the image you can point at one you have:
+
+```bash
+npx remotion render GoldenArghya out/golden-arghya.mp4 --browser-executable=/path/to/chrome
+```
+
+On a 2-core machine the 2160 frames take about 20 minutes at `--concurrency=2`. Keep large
+`filter: blur()` radii off full-frame layers if you need it faster — the soft radial gradients
+in `Fog` and `Motes` already read as diffusion, and dropping those passes cut the render from
+~60 minutes to ~20 on this box.
 
 ## Assets
 

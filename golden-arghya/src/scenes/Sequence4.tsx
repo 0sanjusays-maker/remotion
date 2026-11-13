@@ -1,8 +1,7 @@
 import React, {useMemo} from 'react';
 import {AbsoluteFill, Img, interpolateColors, staticFile, useCurrentFrame} from 'remotion';
 import {EASE, flicker, seeded, track} from '../lib/anim';
-import {Diya, Fog, Grain, Motes, Vignette} from '../components/atmosphere';
-import {SoopTray} from '../components/silhouettes';
+import {Fog, Grain, Motes, Vignette} from '../components/atmosphere';
 
 /**
  * 0:36 – 0:48  Anticipation of the Sun
@@ -55,34 +54,42 @@ export const Sequence4: React.FC = () => {
 				}}
 			/>
 
-			<Fog count={5} rgb="255,196,150" opacity={0.22} blur={120} speed={0.8} top={52} spread={34} seed={61} />
+			<Fog count={5} rgb="255,196,150" opacity={0.22} blur={0} speed={0.8} top={52} spread={34} seed={61} />
 
 			{/* the soop, silhouetted against the burning sky */}
 			<div
 				style={{
 					position: 'absolute',
 					left: `${trayX}%`,
-					bottom: '-7%',
-					height: '46%',
+					bottom: '-4%',
+					height: '58%',
 					transform: `translate(-50%, ${trayY}px) scale(${trayScale})`,
 					transformOrigin: 'bottom center',
-					filter: 'drop-shadow(0 -14px 44px rgba(255,130,40,0.35))',
+					filter: 'drop-shadow(0 -14px 44px rgba(255,130,40,0.4))',
 				}}
 			>
-				<SoopTray style={{height: '100%', width: 'auto', display: 'block'}} backlight="#ffb347" />
-				{/* the one flame on the tray, riding with the tray */}
-				<div
-					style={{
-						position: 'absolute',
-						left: '50%',
-						top: '38%',
-						transform: `translate(-50%, -50%) scale(${0.9 + flicker(frame, 0.07, 5) * 0.08})`,
-						mixBlendMode: 'screen',
-					}}
-				>
-					<Diya size={150} glow={1.15} flickerSeed={2} />
-				</div>
+				<Img
+					src={staticFile('art/mg-soop-alpha.png')}
+					style={{height: '100%', width: 'auto', display: 'block'}}
+				/>
 			</div>
+
+			{/* the flame on the tray catches the lens */}
+			<div
+				style={{
+					position: 'absolute',
+					left: `${trayX}%`,
+					top: '47%',
+					width: '34%',
+					height: '26%',
+					transform: `translate(-50%, -50%) translateY(${trayY * 0.8}px)`,
+					mixBlendMode: 'screen',
+					opacity: 0.85 + flicker(frame, 0.09, 5) * 0.15,
+					background:
+						'radial-gradient(ellipse at center, rgba(255,176,74,0.5) 0%, rgba(255,140,40,0.18) 30%, rgba(255,110,20,0) 62%)',
+					filter: 'blur(10px)',
+				}}
+			/>
 
 			{/* the water and milk she is pouring, suspended in mid air */}
 			<AbsoluteFill style={{mixBlendMode: 'screen'}}>
@@ -143,7 +150,7 @@ export const Sequence4: React.FC = () => {
 				/>
 			))}
 
-			<Motes count={40} rgb="255,206,140" opacity={0.55} size={4.5} rise={0.8} blur={1.8} seed={71} />
+			<Motes count={40} rgb="255,206,140" opacity={0.55} size={4.5} rise={0.8} blur={0.4} seed={71} />
 
 			<Vignette strength={0.8} />
 			<Grain opacity={0.055} />

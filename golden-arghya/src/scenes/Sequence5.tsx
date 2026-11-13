@@ -2,7 +2,6 @@ import React from 'react';
 import {AbsoluteFill, Img, staticFile, useCurrentFrame} from 'remotion';
 import {EASE, track} from '../lib/anim';
 import {Fog, Grain, LensFlare, Motes, Vignette} from '../components/atmosphere';
-import {FamilyGroup} from '../components/silhouettes';
 
 /**
  * 0:48 – 1:00  The Epic Sunrise
@@ -37,13 +36,16 @@ export const Sequence5: React.FC = () => {
 					style={{
 						position: 'absolute',
 						left: '50%',
-						bottom: '11%',
-						height: '49%',
+						bottom: '9%',
+						height: '66%',
 						transform: 'translateX(-50%)',
-						filter: 'brightness(0) contrast(1.4) drop-shadow(0 0 26px rgba(255,196,80,0.5))',
+						filter: 'brightness(0) contrast(1.45) drop-shadow(0 0 30px rgba(255,196,80,0.55))',
 					}}
 				>
-					<FamilyGroup style={{height: '100%', width: 'auto', display: 'block'}} />
+					<Img
+						src={staticFile('art/mg-climax-alpha.png')}
+						style={{height: '100%', width: 'auto', display: 'block'}}
+					/>
 				</div>
 			</AbsoluteFill>
 
@@ -62,11 +64,11 @@ export const Sequence5: React.FC = () => {
 				<Img src={staticFile('art/05-sunrise.jpg')} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
 			</AbsoluteFill>
 
-			<Fog count={5} rgb="255,214,150" opacity={0.3} blur={110} speed={0.7} top={58} spread={26} seed={83} />
+			<Fog count={5} rgb="255,214,150" opacity={0.3} blur={0} speed={0.7} top={58} spread={26} seed={83} />
 
 			<LensFlare x={50} y={45} intensity={flare} warmth={1} />
 
-			<Motes count={95} rgb="255,198,96" opacity={0.75} size={6} rise={1.1} blur={2.2} seed={101} />
+			<Motes count={95} rgb="255,198,96" opacity={0.75} size={6} rise={1.1} blur={0.4} seed={101} />
 
 			{/* high contrast gold grade */}
 			<AbsoluteFill

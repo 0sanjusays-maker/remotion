@@ -2,7 +2,6 @@ import React from 'react';
 import {AbsoluteFill, Img, staticFile, useCurrentFrame} from 'remotion';
 import {EASE, flicker, track} from '../lib/anim';
 import {Fog, Grain, Motes, Vignette} from '../components/atmosphere';
-import {PrayingWoman} from '../components/silhouettes';
 
 /**
  * 0:24 – 0:36  The Cold Penance
@@ -44,7 +43,7 @@ export const Sequence3: React.FC = () => {
 				}}
 			/>
 
-			<Fog count={7} rgb="150,180,214" opacity={0.4} blur={110} speed={0.9} top={30} spread={34} seed={13} />
+			<Fog count={7} rgb="150,180,214" opacity={0.4} blur={0} speed={0.9} top={30} spread={34} seed={13} />
 
 			{/* expanding rings where she breaks the surface */}
 			{Array.from({length: 3}).map((_, i) => {
@@ -74,13 +73,16 @@ export const Sequence3: React.FC = () => {
 					style={{
 						position: 'absolute',
 						left: '50%',
-						bottom: `${100 - waterLine}%`,
-						height: '38%',
+						bottom: '38%',
+						height: '45%',
 						transform: `translate(-50%, ${-breath}px)`,
-						filter: 'url(#waterRipple) brightness(0.24) contrast(1.25) drop-shadow(0 0 14px rgba(150,196,255,0.3))',
+						filter: 'url(#waterRipple) brightness(0.2) contrast(1.3) drop-shadow(0 0 16px rgba(150,196,255,0.28))',
 					}}
 				>
-					<PrayingWoman style={{height: '100%', width: 'auto', display: 'block'}} backlight="#7fb4ea" />
+					<Img
+						src={staticFile('art/mg-vrati-water-alpha.png')}
+						style={{height: '100%', width: 'auto', display: 'block'}}
+					/>
 				</div>
 				{/* her reflection, torn apart by the current */}
 				<div
@@ -88,19 +90,24 @@ export const Sequence3: React.FC = () => {
 						position: 'absolute',
 						left: '50%',
 						top: `${waterLine}%`,
-						height: '18%',
+						height: '20%',
+						width: '45%',
 						transform: 'translate(-50%, 0) scaleY(-1)',
-						opacity: 0.22,
+						opacity: 0.2,
 						filter: 'blur(6px) brightness(0.5)',
-						WebkitMaskImage: 'linear-gradient(180deg, rgba(0,0,0,1), rgba(0,0,0,0) 72%)',
-						maskImage: 'linear-gradient(180deg, rgba(0,0,0,1), rgba(0,0,0,0) 72%)',
+						WebkitMaskImage: 'linear-gradient(180deg, rgba(0,0,0,1), rgba(0,0,0,0) 66%)',
+						maskImage: 'linear-gradient(180deg, rgba(0,0,0,1), rgba(0,0,0,0) 66%)',
+						overflow: 'hidden',
 					}}
 				>
-					<PrayingWoman style={{height: '100%', width: 'auto', display: 'block'}} backlight="#7fb4ea" />
+					<Img
+						src={staticFile('art/mg-vrati-water-alpha.png')}
+						style={{width: '100%', height: 'auto', display: 'block', objectFit: 'cover'}}
+					/>
 				</div>
 			</AbsoluteFill>
 
-			<Fog count={5} rgb="196,220,244" opacity={0.16} blur={90} speed={1.8} top={44} spread={26} seed={41} />
+			<Fog count={5} rgb="196,220,244" opacity={0.16} blur={0} speed={1.8} top={44} spread={26} seed={41} />
 
 			{/* where she breaks the surface */}
 			<div
@@ -142,7 +149,7 @@ export const Sequence3: React.FC = () => {
 				<Img src={staticFile('art/fg-diya.jpg')} style={{width: '100%', display: 'block', position: 'relative'}} />
 			</div>
 
-			<Motes count={22} rgb="255,170,90" opacity={0.4} size={4} rise={0.7} blur={1.6} seed={53} />
+			<Motes count={22} rgb="255,170,90" opacity={0.4} size={4} rise={0.7} blur={0.4} seed={53} />
 
 			{/* deep water shadow at the bottom of frame */}
 			<AbsoluteFill

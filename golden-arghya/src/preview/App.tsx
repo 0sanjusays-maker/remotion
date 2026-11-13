@@ -16,6 +16,10 @@ const ART = [
 	'art/fg-diya.jpg',
 	'art/mg-basket-alpha.png',
 	'art/fg-leaves-alpha.png',
+	'art/mg-vrati-water-alpha.png',
+	'art/mg-soop-alpha.png',
+	'art/mg-climax-alpha.png',
+	'art/mg-blessing-alpha.png',
 	'art/grain.png',
 ];
 

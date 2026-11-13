@@ -71,7 +71,7 @@ export const Sequence7: React.FC = () => {
 				</div>
 			</AbsoluteFill>
 
-			<Motes count={44} rgb="255,176,60" opacity={0.75} size={5} rise={1.5} blur={2} seed={131} />
+			<Motes count={44} rgb="255,176,60" opacity={0.75} size={5} rise={1.5} blur={0.4} seed={131} />
 
 			<Grain opacity={0.045} />
 		</AbsoluteFill>

@@ -49,7 +49,7 @@ export const Sequence1: React.FC = () => {
 					background: `radial-gradient(circle at 50.5% 43%, rgba(255,168,66,0.55) 0%, rgba(255,140,40,0.16) 4%, rgba(255,120,20,0) 15%)`,
 				}}
 			/>
-			<Fog count={6} rgb="150,183,214" opacity={0.4} blur={120} speed={0.7} top={22} spread={46} seed={3} blend="screen" />
+			<Fog count={6} rgb="150,183,214" opacity={0.4} blur={0} speed={0.7} top={22} spread={46} seed={3} blend="screen" />
 
 			{/* the man with the daura */}
 			<div
@@ -83,7 +83,7 @@ export const Sequence1: React.FC = () => {
 				}}
 			/>
 
-			<Fog count={5} rgb="176,204,232" opacity={0.34} blur={70} speed={1.5} top={52} spread={40} seed={17} />
+			<Fog count={5} rgb="176,204,232" opacity={0.34} blur={0} speed={1.5} top={52} spread={40} seed={17} />
 
 			{/* foreground sugarcane, heavily defocused and pushed to the edges */}
 			<AbsoluteFill style={{filter: 'blur(12px)', opacity: 0.88}}>
@@ -118,7 +118,7 @@ export const Sequence1: React.FC = () => {
 				</div>
 			</AbsoluteFill>
 
-			<Fog count={4} rgb="206,226,246" opacity={0.22} blur={140} speed={2.6} top={62} spread={38} seed={29} />
+			<Fog count={4} rgb="206,226,246" opacity={0.22} blur={0} speed={2.6} top={62} spread={38} seed={29} />
 
 			{/* cold moonlight grade */}
 			<AbsoluteFill

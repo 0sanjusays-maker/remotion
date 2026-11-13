@@ -9,7 +9,7 @@
 		"preview": "vite preview --host 0.0.0.0 --port 3000",
 		"studio": "remotion studio --no-open",
 		"compositions": "remotion compositions",
-		"render": "remotion render GoldenArghya out/golden-arghya.mp4",
+		"render": "remotion render GoldenArghya out/golden-arghya.mp4 --pixel-format=yuv420p --codec=h264 --audio-codec=aac --crf=20",
 		"still": "remotion still GoldenArghya out/still.png",
 		"audio": "node scripts/build-audio.mjs"
 	},

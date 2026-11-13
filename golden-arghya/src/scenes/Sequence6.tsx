@@ -2,7 +2,6 @@ import React from 'react';
 import {AbsoluteFill, Img, staticFile, useCurrentFrame} from 'remotion';
 import {EASE, flicker, track} from '../lib/anim';
 import {Fog, Grain, Motes, Vignette} from '../components/atmosphere';
-import {MotherAndChild} from '../components/silhouettes';
 
 /**
  * 1:00 – 1:08  The Blessing & Return
@@ -29,7 +28,7 @@ export const Sequence6: React.FC = () => {
 			</AbsoluteFill>
 
 			{/* caustic light webs dancing across the frame */}
-			<AbsoluteFill style={{mixBlendMode: 'screen', opacity: caustic, filter: 'blur(26px)'}}>
+			<AbsoluteFill style={{mixBlendMode: 'screen', opacity: caustic}}>
 				{Array.from({length: 9}).map((_, i) => {
 					const x = ((i * 37 + frame * 0.45) % 130) - 15;
 					const y = 30 + ((i * 53 + frame * 0.2) % 60);
@@ -51,7 +50,7 @@ export const Sequence6: React.FC = () => {
 				})}
 			</AbsoluteFill>
 
-			<Fog count={4} rgb="255,214,158" opacity={0.26} blur={100} speed={0.6} top={52} spread={30} seed={97} />
+			<Fog count={4} rgb="255,214,158" opacity={0.26} blur={0} speed={0.6} top={52} spread={30} seed={97} />
 
 			{/* the wet stone ghat they are standing on */}
 			<AbsoluteFill
@@ -59,7 +58,7 @@ export const Sequence6: React.FC = () => {
 					top: 'auto',
 					height: '20%',
 					background:
-						'linear-gradient(180deg, rgba(14,7,2,0) 0%, rgba(12,6,2,0.72) 26%, rgba(7,4,1,0.96) 62%, rgba(5,3,1,1) 100%)',
+						'linear-gradient(180deg, rgba(14,7,2,0) 0%, rgba(12,6,2,0.88) 16%, rgba(7,4,1,0.98) 44%, #040201 100%)',
 				}}
 			/>
 			<div
@@ -79,14 +78,17 @@ export const Sequence6: React.FC = () => {
 				style={{
 					position: 'absolute',
 					left: '46%',
-					bottom: '16.5%',
-					height: '55%',
+					bottom: '5%',
+					height: '62%',
 					transform: 'translateX(-50%)',
-					filter: 'brightness(0.17) contrast(1.25) drop-shadow(0 0 34px rgba(255,190,90,0.3))',
+					filter: 'brightness(0.14) contrast(1.3) drop-shadow(0 0 34px rgba(255,190,90,0.32))',
 					opacity: 0.97,
 				}}
 			>
-				<MotherAndChild style={{height: '100%', width: 'auto', display: 'block'}} backlight="#ffd070" />
+				<Img
+					src={staticFile('art/mg-blessing-alpha.png')}
+					style={{height: '100%', width: 'auto', display: 'block'}}
+				/>
 			</div>
 
 			{/* their shadows pooling on the wet stone */}
@@ -95,14 +97,14 @@ export const Sequence6: React.FC = () => {
 					position: 'absolute',
 					left: '20%',
 					right: '12%',
-					bottom: '14%',
+					bottom: '11%',
 					height: '5%',
 					background: 'radial-gradient(ellipse at 55% 40%, rgba(0,0,0,0.85), rgba(0,0,0,0) 72%)',
-					filter: 'blur(14px)',
+					filter: 'blur(8px)',
 				}}
 			/>
 
-			<Motes count={38} rgb="255,206,130" opacity={0.5} size={5} rise={0.5} blur={2.4} seed={113} />
+			<Motes count={38} rgb="255,206,130" opacity={0.5} size={5} rise={0.5} blur={0.4} seed={113} />
 
 			<AbsoluteFill
 				style={{
